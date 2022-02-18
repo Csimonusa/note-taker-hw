@@ -38,4 +38,11 @@ class Save {
         return newNote
     }
 
+    async deleteNote(id) {
+        const notes = await this.retrieveNotes()
+        const filteredNotes = notes.filter(note => note.id !== id)
+        return await this.write(filteredNotes)
+    }
 }
+
+module.exports = new Save()
