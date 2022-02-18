@@ -8,4 +8,20 @@ class Save {
     write(note) {
         return writeNote('db/db.json', JSON.stringify(note))
     }
+
+    read() {
+        return readNote('db/db.json', 'utf8')
+    }
+
+    async retrieveNotes() {
+        const notes = await this.read()
+        let parsedNotes
+        try {
+            parsedNotes = [].concat(JSON.parse(notes))
+        } catch (err) {
+            parsedNotes = []
+        }
+        return parsedNotes
+    }
+
 }
